@@ -18,9 +18,9 @@
     "babel-preset-stage-2": "^6.3.13",
     "babel-preset-stage-3": "^6.3.13",
     "babel-register": "^6.3.13",
-    "electron-prebuilt": "^0.35.4"
+    "electron-prebuilt": "^0.36.2"
   },
-  "babel":{
+  "babel": {
     "presets": [
       "es2015",
       "stage-2",
