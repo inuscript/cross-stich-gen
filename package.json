@@ -4,12 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "electron .",
+    "start": "electron electron.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
+    "react-redux": "^4.0.6",
     "redux": "^3.0.5"
   },
   "devDependencies": {

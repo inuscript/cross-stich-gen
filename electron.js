@@ -24,7 +24,7 @@ app.on('ready', function() {
   // メイン画面のサイズ
   mainWindow = new BrowserWindow({width: 800, height: 600});
   // 起動 url を指定
-  mainWindow.loadUrl(currentURL);
+  mainWindow.loadURL(currentURL);
 
   // デベロッパーツールを表示
   // 不要であればコメントアウト
