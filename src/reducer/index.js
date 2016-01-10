@@ -1,21 +1,19 @@
 import { createStore } from 'redux'
 import { combineReducers } from 'redux'
 
-const bitmap = (state = {}, action){
+export const bitmap = (state = [], action) => {
   switch(action.type){
     case 'PAINT':
       let {x, y, color} = action.payload
-      return Object.assign({}, state, { 
-        [x]: {
-          [y]: color
-        } 
-      })
+      let cloned = state.concat()
+      cloned[x][y] = color
+      return cloned 
     default:
       return state
   }
 }
 
-const palette = (state = [], action){
+export const palette = (state = [], action) => {
   let num 
   switch(action.type){
     case 'ADD_PALETTE':
