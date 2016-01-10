@@ -1,19 +1,6 @@
 import React, {Component} from "react"
 import ReactDOM from "react-dom"
-
-export class CrossStichApp extends Component{
-  render(){
-    return <DrawCanvas />
-  }
-}
-
-const flattenBitmap = (bitmap, colorPalette) => {
-  return bitmap.reduce((flat, yLine, y) => {
-    return flat.concat(yLine.map((bit, x) => {
-      return {x, y, color: colorPalette[bit] || "#fff"}
-    }))
-  }, [])
-}
+import {flattenBitmap} from "../util"
 
 class ContextRender{
   constructor(context, pixSize = 10){
@@ -27,6 +14,9 @@ class ContextRender{
     })
   }
   drawPix(x, y, color){
+    if(!color){
+      return
+    }
     let pixSize = this.pixSize
     this.context.fillStyle = color
     this.context.fillRect(x * pixSize, y * pixSize, pixSize, pixSize)
@@ -36,8 +26,8 @@ class ContextRender{
 export class DrawCanvas extends Component{
   constructor(){
     super()
-    this.width = 500;
-    this.height = 500;
+    this.width = 200;
+    this.height = 200;
 
   }
   getContext(){
@@ -63,8 +53,6 @@ export class DrawCanvas extends Component{
   }
   render(){
     return <canvas style={{
-      width: this.witdh, 
-      height: this.height
     }}/>
   }
 }

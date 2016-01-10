@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "electron electron.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test/"
   },
   "dependencies": {
     "react": "^0.14.3",
@@ -20,7 +20,8 @@
     "babel-preset-stage-2": "^6.3.13",
     "babel-preset-stage-3": "^6.3.13",
     "babel-register": "^6.3.13",
-    "electron-prebuilt": "^0.36.2"
+    "electron-prebuilt": "^0.36.2",
+    "mocha": "^2.3.4"
   },
   "babel": {
     "presets": [
