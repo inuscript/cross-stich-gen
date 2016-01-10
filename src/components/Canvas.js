@@ -13,6 +13,9 @@ class ContextRender{
       this.drawPix(pix.x, pix.y, pix.color)
     })
   }
+  getPixRect(x, y){
+    
+  }
   drawPix(x, y, color){
     if(!color){
       return
@@ -23,12 +26,21 @@ class ContextRender{
   }
 }
 
+export class Layer extends Component{
+  getContext(){
+    return ReactDOM.findDOMNode(this).getContext('2d')
+  }
+  render(){
+    let style = {position: "absolute", zIndex: this.props.zIndex}
+    return <canvas style={style} />
+  }
+}
+
 export class DrawCanvas extends Component{
   constructor(){
     super()
     this.width = 200;
     this.height = 200;
-
   }
   getContext(){
     return ReactDOM.findDOMNode(this).getContext('2d')
@@ -43,16 +55,24 @@ export class DrawCanvas extends Component{
     this.paint(context);
   }
   paint(context){
-    let bitmap = [[0,0,1], [0,1,0],[1,0,0]]
-    let colors = {1: '#f00'}
     let render = new ContextRender(context)
-    render.drawImage(bitmap, colors)
+    render.drawImage(this.props.bitmap, this.props.palette)
   }
   clear(context){
     context.clearRect(0, 0, this.width, this.height);
   }
+  handleClick(e){
+    console.log(e.target.getBoundingClientRect())
+  }
+  handleMouseMove(e){
+    
+  }
   render(){
-    return <canvas style={{
-    }}/>
+    let style = {}
+    return <canvas 
+      style={style} 
+      onClick={this.handleClick.bind(this)}
+      onMouseMove={this.handleMouseMove.bind(this)}
+    />
   }
 }
