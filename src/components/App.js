@@ -24,7 +24,6 @@ let select = (state) => {
 
 class App extends Component{
   render(){
-    
     return <PixelCanvas 
       { ...this.props }
       { ...bindActionCreators(actions, this.props.dispatch) }

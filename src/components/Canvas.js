@@ -56,8 +56,9 @@ class ContextRender{
       return
     }
     let pixSize = this.pixSize
-    this.context.fillStyle = color
     let grid = this.boxer.pointToBox(x, y)
+
+    this.context.fillStyle = color
     this.context.fillRect(grid.x, grid.y, grid.w, grid.h)
   }
 }
