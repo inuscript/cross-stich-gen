@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from "react"
 import ReactDOM from "react-dom"
-import { flattenBitmap } from "../util"
 import { PixelBox } from "../lib/pixel"
 
 class Layer extends Component{
@@ -45,21 +44,17 @@ class ContextRender{
     this.pixSize = pixSize
     this.boxer = new PixelBox(pixSize)
   }
-  drawImage(bitmap, colors){
-    let pixels = flattenBitmap(bitmap, colors)
-    pixels.forEach( (pix) => {
-      this.drawPix(pix.x, pix.y, pix.color)
+  drawImage(bitmap, palette){
+    let rects = this.boxer.getRects(bitmap)
+    rects.forEach( (rect) => {
+      let color = palette[rect.color] || "#fff"
+      this.drawGrid(rect, color)
     })
   }
-  drawPix(x, y, color){
-    if(!color){
-      return
-    }
-    let pixSize = this.pixSize
-    let grid = this.boxer.pointToBox(x, y)
-
+  drawGrid(rect, color){
+    if(!color) return
     this.context.fillStyle = color
-    this.context.fillRect(grid.x, grid.y, grid.w, grid.h)
+    this.context.fillRect(rect.x, rect.y, rect.w, rect.h)
   }
 }
 
