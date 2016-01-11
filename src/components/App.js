@@ -1,8 +1,9 @@
 import React, {Component} from "react"
 import ReactDOM from "react-dom"
 import { Provider, connect } from "react-redux"
-import { DrawCanvas } from "./Canvas"
-import { createStore } from "redux"
+import { PixelCanvas } from "./Canvas"
+import { createStore, bindActionCreators } from "redux"
+import * as actions from "../actions"
 import crossStich from "../reducer"
 
 let store = createStore(crossStich,{
@@ -19,7 +20,11 @@ let select = (state) => {
 
 class App extends Component{
   render(){
-    return <DrawCanvas { ...this.props }/>
+    
+    return <PixelCanvas 
+      { ...this.props }
+      { ...bindActionCreators(actions, this.props.dispatch) }
+    />
   }
 }
 
