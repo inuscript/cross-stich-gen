@@ -3,6 +3,7 @@ import ReactDOM from "react-dom"
 import { PixelBox } from "../lib/pixel"
 import { Layer } from "./Layer"
 
+// TODO: Remove
 class ContextRender{
   constructor(context, pixSize = 10){
     this.context = context

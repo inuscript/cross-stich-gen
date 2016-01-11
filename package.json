@@ -8,11 +8,13 @@
     "test": "mocha test/**/*.js --compilers js:babel-register"
   },
   "dependencies": {
+    "lodash.range": "^3.0.1",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
     "react-redux": "^4.0.6",
     "redux": "^3.0.5",
-    "redux-actions": "^0.9.0"
+    "redux-actions": "^0.9.0",
+    "redux-thunk": "^1.0.3"
   },
   "devDependencies": {
     "babel": "^6.3.13",
