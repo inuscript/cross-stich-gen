@@ -18,5 +18,4 @@ export const loadImage = createAction('LOAD_IMAGE', (imageData) => {
       return p
     })
   })
-  console.log(item)
 })
