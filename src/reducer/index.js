@@ -8,6 +8,8 @@ export const bitmap = (state = [], action) => {
       let cloned = state.concat()
       cloned[y][x] = color
       return cloned 
+    case 'RELOAD':
+      return action.payload
     default:
       return state
   }
@@ -17,6 +19,8 @@ export const palette = (state = [], action) => {
   switch(action.type){
     case 'ADD_PALETTE':
       return [].concat(state).concat(action.payload)
+    case 'RELOAD':
+      return action.payload
     default:
       return state
   }
