@@ -90,13 +90,13 @@ export class DrawCanvas extends Component{
   constructor(){
     super()
   }
-  paint(context){
+  doPaint(context){
     let render = new ContextRender(context)
     render.drawImage(this.props.bitmap, this.props.palette)
   }
   render(){
     return <Layer
-      onPaint={this.paint.bind(this)}
+      onPaint={this.doPaint.bind(this)}
       width={this.props.width}
       height={this.props.height}
     />
