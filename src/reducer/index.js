@@ -6,7 +6,7 @@ export const bitmap = (state = [], action) => {
     case 'PAINT':
       let {x, y, color} = action.payload
       let cloned = state.concat()
-      cloned[x][y] = color
+      cloned[y][x] = color
       return cloned 
     default:
       return state

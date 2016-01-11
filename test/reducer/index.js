@@ -10,8 +10,8 @@ describe("bitmap", () => {
       payload: { x: 1, y: 0, color: 2 }
     })
     assert.deepEqual(result, [
-      [0, 0],
-      [2, 1]
+      [0, 2],
+      [0, 1]
     ])
   })
 })

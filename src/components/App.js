@@ -7,7 +7,11 @@ import * as actions from "../actions"
 import crossStich from "../reducer"
 
 let store = createStore(crossStich,{
-  bitmap : [[0,0,1], [0,1,0], [1,0,0]],
+  bitmap : [
+    [0,0,1], 
+    [0,1,0], 
+    [1,0,0]
+  ],
   palette : ['#fff', '#f00']
 })
 
