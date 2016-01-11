@@ -12,13 +12,15 @@ let store = createStore(crossStich,{
     [0,1,0], 
     [1,0,0]
   ],
-  palette : ['#fff', '#f00']
+  palette : ['#fff', '#f00'],
+  pixelSize: 10
 })
 
 let select = (state) => {
   return {
     bitmap: state.bitmap,
-    palette: state.palette
+    palette: state.palette,
+    pixelSize: state.pixelSize,
   }
 }
 

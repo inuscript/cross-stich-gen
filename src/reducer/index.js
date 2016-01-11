@@ -14,7 +14,6 @@ export const bitmap = (state = [], action) => {
 }
 
 export const palette = (state = [], action) => {
-  let num 
   switch(action.type){
     case 'ADD_PALETTE':
       return [].concat(state).concat(action.payload)
@@ -23,6 +22,15 @@ export const palette = (state = [], action) => {
   }
 }
 
+export const pixelSize = (state = 10, action) => {
+  switch(action.tyoe){
+    case 'CHANGE_PIXEL_SIZE':
+      return state
+    default:
+      return state
+  }
+}
+
 export default combineReducers({
-  bitmap, palette
+  bitmap, palette, pixelSize
 })

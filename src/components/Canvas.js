@@ -86,7 +86,7 @@ export class DrawCanvas extends Component{
     super()
   }
   doPaint(context){
-    let render = new ContextRender(context)
+    let render = new ContextRender(context, this.props.pixelSize)
     render.drawImage(this.props.bitmap, this.props.palette)
   }
   render(){
@@ -110,7 +110,7 @@ export class PixelCanvas extends Component{
     this.props.paint(x, y, 1)
   }
   render(){
-    let {bitmap, palette} = this.props
+    let {bitmap, palette, pixelSize} = this.props
     let size = {width: 200, height: 200}
     return (
       <div>
