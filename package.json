@@ -8,7 +8,7 @@
     "test": "mocha test/**/*.js --compilers js:babel-register"
   },
   "dependencies": {
-    "lodash.range": "^3.0.1",
+    "lodash.range": "^3.1.0",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
     "react-redux": "^4.0.6",
