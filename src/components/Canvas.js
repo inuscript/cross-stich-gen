@@ -72,7 +72,6 @@ export class PixelCanvas extends Component{
   }
   handleClick(gx, gy){
     let {x, y} = this.boxer.cursorToPoint(gx, gy)
-    console.log({gx, gy, x, y})
     this.props.paint(x, y, 1)
   }
   render(){
