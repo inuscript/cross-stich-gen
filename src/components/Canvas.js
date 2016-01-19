@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from "react"
 import ReactDOM from "react-dom"
-import { PixelBox } from "../lib/pixel"
+import { PixelBox, flattenBitmap } from "../lib/pixel"
 import { Layer } from "./Layer"
 
 // TODO: Remove
@@ -53,20 +53,43 @@ export class EventCanvas extends Component{
   }
 }
 
+
+const RowCells = ({row, palette}) => {
+  return <tr> 
+  {
+      row.map((r, i) => {
+      let color = palette[r] || "#fff"
+      console.log(color)
+        return <td style={{background: color}} key={i}></td>
+      })
+    }
+  </tr>
+}
+  
 export class DrawCanvas extends Component{
   constructor(){
     super()
   }
   doPaint(context){
-    let render = new ContextRender(context, this.props.width, this.props.height, this.props.pixelSize)
-    render.reDrawImage(this.props.bitmap, this.props.palette)
+    // let render = new ContextRender(context, this.props.width, this.props.height, this.props.pixelSize)
+    // render.reDrawImage(this.props.bitmap, this.props.palette)
   }
   render(){
-    return <Layer
-      onPaint={this.doPaint.bind(this)}
-      width={this.props.width}
-      height={this.props.height}
-    />
+    let { bitmap, palette } = this.props
+    return <table>
+      <tbody>
+      { 
+        bitmap.map((ys, i) => {
+          return <RowCells key={i} palette={palette} row={ys}/>
+        })
+      }
+      </tbody>
+    </table>
+    // return <Layer
+    //   onPaint={this.doPaint.bind(this)}
+    //   width={this.props.width}
+    //   height={this.props.height}
+    // />
   }
 }
 

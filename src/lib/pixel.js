@@ -1,4 +1,4 @@
-const flattenBitmap = (bitmap, colorPalette) => {
+export const flattenBitmap = (bitmap, colorPalette) => {
   return bitmap.reduce((flat, yLine, y) => {
     return flat.concat(yLine.map((color, x) => {
       return {x, y, color: color}
