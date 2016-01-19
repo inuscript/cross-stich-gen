@@ -6,8 +6,7 @@ import { ImageUploader } from "./ImageUploader"
 import { createStore, bindActionCreators } from "redux"
 import * as actions from "../actions"
 import crossStich from "../reducer"
-
-let store = createStore(crossStich,{
+let initialState = {
   bitmap : [
     [0,0,1], 
     [0,1,0], 
@@ -15,15 +14,13 @@ let store = createStore(crossStich,{
   ],
   palette : ['#fff', '#f00'],
   pixelSize: 10
-})
-
-let select = (state) => {
-  return {
-    bitmap: state.bitmap,
-    palette: state.palette,
-    pixelSize: state.pixelSize,
-  }
 }
+let store = createStore(crossStich, initialState)
+
+let selectMapper = (state) => {
+  return state
+}
+
 let dispatchToProps = (dispatch) => {
   return bindActionCreators(actions, dispatch) 
 }
@@ -40,7 +37,7 @@ class App extends Component{
   }
 }
 
-let Connected = connect(select, dispatchToProps)(App)
+let Connected = connect(selectMapper, dispatchToProps)(App)
 
 export class CrossStichApp extends Component{
   render(){
