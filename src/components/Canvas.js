@@ -5,12 +5,18 @@ import { Layer } from "./Layer"
 
 // TODO: Remove
 class ContextRender{
-  constructor(context, pixSize = 1){
+  constructor(context, width, height, pixSize = 1){
     this.context = context
     this.pixSize = pixSize
+    this.width = width
+    this.height = height
     this.boxer = new PixelBox(pixSize)
   }
-  drawImage(bitmap, palette){
+  clean(){
+    this.context.clearRect(0, 0, this.width, this.height);
+  }
+  reDrawImage(bitmap, palette){
+    this.clean()
     let rects = this.boxer.getRects(bitmap)
     rects.forEach( (rect) => {
       let color = palette[rect.color] || "#fff"
@@ -52,8 +58,8 @@ export class DrawCanvas extends Component{
     super()
   }
   doPaint(context){
-    let render = new ContextRender(context, this.props.pixelSize)
-    render.drawImage(this.props.bitmap, this.props.palette)
+    let render = new ContextRender(context, this.props.width, this.props.height, this.props.pixelSize)
+    render.reDrawImage(this.props.bitmap, this.props.palette)
   }
   render(){
     return <Layer
