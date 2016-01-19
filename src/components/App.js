@@ -5,7 +5,7 @@ import { PixelCanvas } from "./Canvas"
 import { ImageUploader } from "./ImageUploader"
 import { createStore, bindActionCreators } from "redux"
 import * as actions from "../actions"
-import crossStich from "../reducer"
+import crossStich, { BitmapStore } from "../reducer"
 
 let store = createStore(crossStich,{
   bitmap : [

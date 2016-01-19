@@ -1,7 +1,9 @@
 import { createStore } from 'redux'
 import { combineReducers } from 'redux'
+import { ReduceStore } from "flux/utils"
 
-export const bitmap = (state = [], action) => {
+
+const bitmap = (state = [], action) => {
   switch(action.type){
     case 'PAINT':
       let {x, y, color} = action.payload
@@ -15,7 +17,7 @@ export const bitmap = (state = [], action) => {
   }
 }
 
-export const palette = (state = [], action) => {
+const palette = (state = [], action) => {
   switch(action.type){
     case 'ADD_PALETTE':
       return [].concat(state).concat(action.payload)
@@ -26,7 +28,7 @@ export const palette = (state = [], action) => {
   }
 }
 
-export const pixelSize = (state = 10, action) => {
+const pixelSize = (state = 10, action) => {
   switch(action.tyoe){
     case 'CHANGE_PIXEL_SIZE':
       return state
@@ -38,3 +40,9 @@ export const pixelSize = (state = 10, action) => {
 export default combineReducers({
   bitmap, palette, pixelSize
 })
+
+export class BitmapStore extends ReduceStore{
+  reduce(state, action){
+    return bitmap(state, action)
+  }
+}
