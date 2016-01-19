@@ -5,7 +5,7 @@ import { Layer } from "./Layer"
 
 // TODO: Remove
 class ContextRender{
-  constructor(context, pixSize = 10){
+  constructor(context, pixSize = 1){
     this.context = context
     this.pixSize = pixSize
     this.boxer = new PixelBox(pixSize)

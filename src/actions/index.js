@@ -1,21 +1,46 @@
 import { createAction } from 'redux-actions'
 import range from "lodash.range"
+import uniq from "lodash.uniq"
+
 export const paint = createAction('PAINT', (x, y, color) => {
   return {x, y, color}
 })
 
-export const loadImage = createAction('LOAD_IMAGE', (imageData) => {
+const reload = createAction('RELOAD', (data) => data)
+
+const imageToPixels = (data) => {
+  if(data.length % 4 !== 0){
+    throw new Error("Invalid Data")
+  }
+  let pixelRange = range(0, data.length / 4)
+  return pixelRange.map((i) => {
+    return {
+      r: data[4 * i + 0],
+      g: data[4 * i + 1],
+      b: data[4 * i + 2],
+      a: data[4 * i + 3],
+    }
+  })
+}
+
+const imageToRGBA = (imageData) => {
   const {data, height, width} = imageData
-  let item = range(0, height).map( (y) => {
+  let pixels = imageToPixels(data)
+  let map = range(0, height).map( (y) => {
     return range(0, width).map( (x) => {
-      let index = (x + y * width) * 4;
-      let p = {
-        r: data[index + 0],
-        g: data[index + 1],
-        b: data[index + 2],
-        a: data[index + 3]
-      } 
+      let i = (x + y * width)
+      let p = pixels[i]
       return p
     })
   })
-})
+  let palette = uniq(pixels.map( (p) => {
+    return `rgba(${p.r}, ${p.g}, ${p.b}, ${p.a})`
+  }))
+  console.log(palette)
+  return { map, palette }
+}
+
+export const loadImage = (imageData) => {
+  let pixel = imageToRGBA(imageData)
+  return reload(pixel)
+}
