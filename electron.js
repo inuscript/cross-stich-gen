@@ -6,9 +6,6 @@ var BrowserWindow = require('browser-window');
 // 起動 URL
 var currentURL = 'file://' + __dirname + '/index.html';
 
-// クラッシュレポート
-require('crash-reporter').start();
-
 // メインウィンドウ
 var mainWindow = null;
 
