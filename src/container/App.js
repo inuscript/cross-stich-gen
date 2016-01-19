@@ -1,28 +1,19 @@
 import React, {Component} from "react"
 import ReactDOM from "react-dom"
 import { Provider, connect } from "react-redux"
-import { PixelCanvas } from "./Canvas"
-import { ImageUploader } from "./ImageUploader"
+import { PixelCanvas } from "../components/Canvas"
+import { ImageUploader } from "../components/ImageUploader"
 import { createStore, bindActionCreators } from "redux"
 import * as actions from "../actions"
-import crossStich from "../reducer"
-let initialState = {
-  bitmap : [
-    [0,0,1], 
-    [0,1,0], 
-    [1,0,0]
-  ],
-  palette : ['#fff', '#f00'],
-  pixelSize: 10
-}
-let store = createStore(crossStich, initialState)
+import { store } from "../store"
 
 let selectMapper = (state) => {
   return state
 }
 
 let dispatchToProps = (dispatch) => {
-  return bindActionCreators(actions, dispatch) 
+  let bound = bindActionCreators(actions, dispatch) 
+  return bound
 }
 
 class App extends Component{

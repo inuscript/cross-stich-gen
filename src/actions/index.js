@@ -6,8 +6,6 @@ export const paint = createAction('PAINT', (x, y, color) => {
   return {x, y, color}
 })
 
-const reload = createAction('RELOAD', (data) => data)
-
 const imageToPixels = (data) => {
   if(data.length % 4 !== 0){
     throw new Error("Invalid Data")
@@ -40,7 +38,13 @@ const imageToRGBA = (imageData) => {
   return { map, palette }
 }
 
-export const loadImage = (imageData) => {
-  let pixel = imageToRGBA(imageData)
-  return reload(pixel)
+const reloadMap = createAction('RELOAD_MAP', (data) => data)
+const reloadPalette = createAction('RELOAD_PALETTE', (data) => data)
+
+export function loadImage(imageData){
+  return function(dispatch){
+    let pixel = imageToRGBA(imageData)
+    disaptch(reloadMap(pixel.map))
+    disaptch(reloadPalette(pixel.palette))
+  }
 }
