@@ -1,34 +1,11 @@
 import React, { Component, PropTypes } from "react"
 import ReactDOM from "react-dom"
-import { PixelBox } from "../lib/pixel"
+import { mapToRects } from "../lib/pixel"
+import { ContextRender, render } from "../lib/render"
 import { Layer } from "./Layer"
+import { Size } from "../lib/struct"
 
 // TODO: Remove
-class ContextRender{
-  constructor(context, width, height, pixSize = 1){
-    this.context = context
-    this.pixSize = pixSize
-    this.width = width
-    this.height = height
-    this.boxer = new PixelBox(pixSize)
-  }
-  clean(){
-    this.context.clearRect(0, 0, this.width, this.height);
-  }
-  reDrawImage(bitmap, palette){
-    this.clean()
-    let rects = this.boxer.getRects(bitmap)
-    rects.forEach( (rect) => {
-      let color = palette[rect.color] || "#fff"
-      this.drawGrid(rect, color)
-    })
-  }
-  drawGrid(rect, color){
-    if(!color) return
-    this.context.fillStyle = color
-    this.context.fillRect(rect.x, rect.y, rect.w, rect.h)
-  }
-}
 
 export class EventCanvas extends Component{
   calcCurrentPos(e){
@@ -53,20 +30,25 @@ export class EventCanvas extends Component{
   }
 }
 
-export class DrawCanvas extends Component{
+class DrawCanvas extends Component{
   constructor(){
     super()
   }
-  doPaint(context){
-    let render = new ContextRender(context, this.props.width, this.props.height, this.props.pixelSize)
-    render.reDrawImage(this.props.bitmap, this.props.palette)
-  }
   render(){
     return <Layer
-      onPaint={this.doPaint.bind(this)}
-      width={this.props.width}
-      height={this.props.height}
+      onPaint={this.props.onPaint}
+      size={this.size}
     />
+  }
+}
+
+const generateRenderRectFn = (rects) => {
+  return function(context){
+    rects.forEach( (rect) => {
+      let color = palette[rect.color] || "#fff"
+      context.fillStyle = color
+      context.fillRect(rect.x, rect.y, rect.w, rect.h)
+    })
   }
 }
 
@@ -74,19 +56,33 @@ export class PixelCanvas extends Component{
   constructor(){
     super()
     let pixSize = 10
-    this.boxer = new PixelBox(pixSize)
+    this.size =  new Size({width: 200, height: 200})
   }
-  handleClick(gx, gy){
+  handleEventCanvasClick(gx, gy){
     let {x, y} = this.boxer.cursorToPoint(gx, gy)
     this.props.paint(x, y, 1)
   }
+  handlePixelDraw(context){
+    let { bitmap } = this.props
+    let { width, height } = this.size.toObject()
+    context.clearRect(0, 0, width, height);
+    let rects = mapToRects(bitmap, palette)
+
+    let fn = generateRenderRectFn(bitmap)
+    fn(context)
+  }
   render(){
     let {bitmap, palette, pixelSize} = this.props
-    let size = {width: 200, height: 200}
     return (
       <div>
-        <DrawCanvas layer={1} {...size} {...this.props} />
-        <EventCanvas layer={2} {...size} onClick={this.handleClick.bind(this)}/>
+        <DrawCanvas 
+          layer={1} 
+          size={this.size}
+          onPaint={this.handlePixelDraw.bind(this)}
+        />
+        <EventCanvas layer={2} size={this.size}  
+          onClick={this.handleEventCanvasClick.bind(this)}
+        />
       </div>
     )
   }

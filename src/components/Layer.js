@@ -1,14 +1,23 @@
 import React, { Component, PropTypes } from "react"
 import ReactDOM from "react-dom"
+import { Size } from "../lib/struct"
 
 export class Layer extends Component{
   static propTypes(){
     return {
       index: PropTypes.number.isRequired,
-      width: PropTypes.number.isRequired,
-      height: PropTypes.number.isRequired,
+      size: PropTypes.instanceOf(Size),
       onPaint: PropTypes.func
     }
+  }
+  get width(){
+    return this.props.size.width
+  }
+  get height(){
+    return this.props.size.height
+  }
+  get height(){
+    return this.props.size.toObject()
   }
   componentDidMount(){
     let context = this.getContext()
@@ -28,14 +37,14 @@ export class Layer extends Component{
     return ReactDOM.findDOMNode(this).getContext('2d')
   }
   clear(context){
-    context.clearRect(0, 0, this.props.width, this.props.height);
+    context.clearRect(0, 0, this.width, this.height);
   }
   render(){
     let style = {
       position: "absolute", 
       zIndex: this.props.index
     }
-    // let { width, height } = this.props
-    return <canvas style={style} {...this.props} />
+
+    return <canvas style={style} {...this.props} {...this.size} />
   }
 }

@@ -6,8 +6,8 @@ const flattenBitmap = (bitmap, colorPalette) => {
   }, [])
 }
 
-export class PixelBox {
-  constructor(size = 4){
+class PixelGrid{
+  constructor(size){
     this.size = size
   }
   pointToBox(x, y){ // pointToRect
@@ -24,16 +24,14 @@ export class PixelBox {
       y: Math.floor(gy / this.size)
     }
   }
-  cursorToBox(gx, gy){ // cursorToRect
-    let point = this.cursorToPoint(gx, gy)
-    return this.pointToBox(point.x, point.y)
-  }
-  getRects(bitmap){
-    let pixels = flattenBitmap(bitmap)
-    return pixels.map( (pix) => {
-      let grid = this.pointToBox(pix.x, pix.y)
-      grid.color = pix.color
-      return grid
-    })
-  }
+}
+
+export const mapToRects = (bitmap, size = 4) => {
+  let pg = new PixelGrid(size)
+  let pixels = flattenBitmap(bitmap)
+  return pixels.map( (pix) => {
+    let grid = pg.pointToBox(pix.x, pix.y)
+    grid.color = pix.color
+    return grid
+  })
 }
