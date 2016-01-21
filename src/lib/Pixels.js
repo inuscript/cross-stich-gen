@@ -1,16 +1,4 @@
-// point
-// grid
-// pixel
-// global
-// cursor -> global
-
-/**
-cx cy -> canvas point
-px py -> pixel point
-*/
-
 import { Record } from "immutable"
-
 
 class Point extends Record({x:0, y:0}){}
 
