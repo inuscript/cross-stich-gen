@@ -5,10 +5,14 @@ class DummyImageLoader extends Component{
   getImageData(){
     let {img, canvas} = this.refs
     let context = ReactDOM.findDOMNode(canvas).getContext('2d')
-    canvas.height = img.height / 10
-    canvas.width = img.width / 10
-    context.scale(0.1, 0.1)
-    context.drawImage(img, 0, 0, img.width, img.height)
+    let scale = 0.1
+    canvas.height = img.height * scale
+    canvas.width = img.width * scale
+    // context.scale(scale, scale)
+    context.drawImage(img, 
+      0, 0, img.width, img.height, 
+      0, 0, canvas.width, canvas.height
+    )
     let imageData = context.getImageData(0, 0, img.width, img.height)
     this.props.onLoadImage(imageData)
   }
