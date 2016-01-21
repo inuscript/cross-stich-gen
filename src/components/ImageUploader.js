@@ -8,7 +8,6 @@ class DummyImageLoader extends Component{
     let scale = 0.1
     canvas.height = img.height * scale
     canvas.width = img.width * scale
-    // context.scale(scale, scale)
     context.drawImage(img, 
       0, 0, img.width, img.height, 
       0, 0, canvas.width, canvas.height

@@ -1,3 +1,21 @@
+
+const aaa = (context, width, height) => {
+  let imageData = context.getImageData(0, 0, width, height)
+}
+const bbb = (imageData) => {
+  let { data, width, height } = imageData
+}
+
+
+
+
+
+
+
+
+
+
+
 // imageData -> { rgba}
 const imageToPixels = (data) => {
   if(data.length % 4 !== 0){
