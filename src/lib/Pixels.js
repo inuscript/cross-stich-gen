@@ -17,7 +17,7 @@ class Rect extends Record({x:0, y:0, w: 0, h: 0}) {
 }
 
 // Grid cord
-class Grid {
+export class Grid {
   constructor(size){
     this.size = size
   }

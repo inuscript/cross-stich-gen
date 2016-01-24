@@ -5,9 +5,36 @@ import ReactDOM from "react-dom"
 // import { mapToRects } from "../lib/pixel"
 import { ContextRender, render } from "../lib/render"
 import { Layer } from "./Layer"
-import { Size } from "../lib/Pixels"
+import { Size, Grid } from "../lib/Pixels"
 
 // TODO: Remove
+const mapToRects = function(bitmap){
+  let grid = new Grid(4)
+  return bitmap.map(function(item){
+    let {x, y} = item.point
+    let c = item.color
+    let rect = grid.pixelToRect(x, y).toObject()
+    let rgba = `rgba(${c.r}, ${c.g}, ${c.b}, ${(c.a/255)})`
+    // console.log(rgba)
+
+    return {
+      rect : rect,
+      color: rgba
+    }
+  })
+}
+
+const generateRenderRectFn = (rects) => {
+  return function(context){
+    rects.forEach( (pix) => {
+      let color = pix.color || "#fff"
+      let rect = pix.rect
+      // console.log(rect)
+      context.fillStyle = color
+      context.fillRect(rect.x, rect.y, rect.w, rect.h)
+    })
+  }
+}
 
 export class EventCanvas extends Component{
   calcCurrentPos(e){
@@ -44,15 +71,6 @@ class DrawCanvas extends Component{
   }
 }
 
-const generateRenderRectFn = (rects) => {
-  return function(context){
-    rects.forEach( (rect) => {
-      let color = palette[rect.color] || "#fff"
-      context.fillStyle = color
-      context.fillRect(rect.x, rect.y, rect.w, rect.h)
-    })
-  }
-}
 
 export class PixelCanvas extends Component{
   constructor(){
@@ -66,11 +84,12 @@ export class PixelCanvas extends Component{
   }
   handlePixelDraw(context){
     let { bitmap } = this.props
+
     let { width, height } = this.size.toObject()
     context.clearRect(0, 0, width, height);
-    let rects = mapToRects(bitmap, palette)
+    let pixels = mapToRects(bitmap)
 
-    let fn = generateRenderRectFn(bitmap)
+    let fn = generateRenderRectFn(pixels)
     fn(context)
   }
   render(){

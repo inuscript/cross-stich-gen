@@ -14,7 +14,10 @@
     <div id="container"></div>
     <script type="text/javascript">
       window.onload = function(){
-        require('babel-register')() //ここ重要
+        require('babel-polyfill')
+        require('babel-register')({
+          sourceMaps: true
+        })
         require("./src/index.js")
       }
     </script>

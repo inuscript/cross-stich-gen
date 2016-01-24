@@ -1,4 +1,5 @@
 import range from "lodash.range"
+import { map } from "./mapIterator"
 const toColorObj = (data, start) => {
   return {
     r: data[start + 0],
@@ -8,25 +9,25 @@ const toColorObj = (data, start) => {
   }
 }
 const toPix = (data, x, y, width) => {
-  let start = (x + y * width * 4)
-  return {
-    point: {x, y}
+  let start = (x + y * width) * 4
+    return {
+    point: {x, y},
     color: toColorObj(data, start)
   }
 }
 
 const toMap = (data, width, height) => {
-  return range(0, height).map( (y) => {
-    return range(0, width).map( (x) => {
-      return toPix(data, x, y, width)
-    })
-  })
+  let pix = []
+  for(let p of map(width, height)){
+    pix.push(toPix(data, p.x, p.y, width))
+  }
+  return pix
 }
 
-const aaa = (context, width, height) => {
+export const contextToMap = (context, width, height) => {
   let imageData = context.getImageData(0, 0, width, height)
-  let chunks = toChunk(imageData.data, width, height)
-  
+  let map = toMap(imageData.data, width, height)
+  return map
 }
 
 
