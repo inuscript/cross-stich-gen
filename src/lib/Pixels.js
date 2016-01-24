@@ -16,6 +16,24 @@ class Rect extends Record({x:0, y:0, w: 0, h: 0}) {
   }
 }
 
+class Color extends Record({r:0, g:0, b:0, a:0}){
+}
+
+export class Pixel {
+  constructor(point, color){
+    this.point = new PixelPoint(point)
+    this.color = new Color(color)
+  }
+  toColorString(){
+    let c = this.color
+    return `rgba(${c.r}, ${c.g}, ${c.b}, ${(c.a/255)})`
+  }
+  toGridRect(scale){
+    let grid = new Grid(scale)
+    let {x, y} = this.point
+    return grid.pixelToRect(x, y)
+  }
+}
 // Grid cord
 export class Grid {
   constructor(size){

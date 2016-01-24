@@ -5,30 +5,15 @@ import ReactDOM from "react-dom"
 // import { mapToRects } from "../lib/pixel"
 import { ContextRender, render } from "../lib/render"
 import { Layer } from "./Layer"
-import { Size, Grid } from "../lib/Pixels"
+import { Size, Grid, Pixel } from "../lib/Pixels"
 
-// TODO: Remove
-const mapToRects = function(bitmap){
-  let grid = new Grid(4)
-  return bitmap.map(function(item){
-    let {x, y} = item.point
-    let c = item.color
-    let rect = grid.pixelToRect(x, y).toObject()
-    let rgba = `rgba(${c.r}, ${c.g}, ${c.b}, ${(c.a/255)})`
-    // console.log(rgba)
-
-    return {
-      rect : rect,
-      color: rgba
-    }
-  })
-}
 
 const generateRenderRectFn = (rects) => {
   return function(context){
     rects.forEach( (pix) => {
-      let color = pix.color || "#fff"
-      let rect = pix.rect
+      let color = pix.toColorString()
+      let rect = pix.toGridRect(4)
+      // console.log(color, rect)
       // console.log(rect)
       context.fillStyle = color
       context.fillRect(rect.x, rect.y, rect.w, rect.h)
@@ -87,9 +72,7 @@ export class PixelCanvas extends Component{
 
     let { width, height } = this.size.toObject()
     context.clearRect(0, 0, width, height);
-    let pixels = mapToRects(bitmap)
-
-    let fn = generateRenderRectFn(pixels)
+    let fn = generateRenderRectFn(bitmap)
     fn(context)
   }
   render(){

@@ -1,5 +1,7 @@
 import range from "lodash.range"
 import { map } from "./mapIterator"
+import { Pixel, Color } from "./Pixels"
+
 const toColorObj = (data, start) => {
   return {
     r: data[start + 0],
@@ -10,10 +12,7 @@ const toColorObj = (data, start) => {
 }
 const toPix = (data, x, y, width) => {
   let start = (x + y * width) * 4
-    return {
-    point: {x, y},
-    color: toColorObj(data, start)
-  }
+  return new Pixel({x, y}, toColorObj(data, start))
 }
 
 const toMap = (data, width, height) => {
