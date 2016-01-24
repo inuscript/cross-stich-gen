@@ -8,6 +8,7 @@
     "test": "mocha test/**/*.js --compilers js:babel-register"
   },
   "dependencies": {
+    "babel-polyfill": "^6.3.14",
     "immutable": "^3.7.6",
     "lodash.range": "^3.1.0",
     "react": "^0.14.6",

@@ -1,5 +1,7 @@
 import { Record } from "immutable"
 
+export class Size extends Record({width:0, height:0}){}
+
 class Point extends Record({x:0, y:0}){}
 
 class CursorPoint extends Point{}

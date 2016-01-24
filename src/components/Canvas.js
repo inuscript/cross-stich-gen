@@ -1,12 +1,11 @@
 import { map } from "../lib/MapIterator"
 
-
 import React, { Component, PropTypes } from "react"
 import ReactDOM from "react-dom"
 // import { mapToRects } from "../lib/pixel"
 import { ContextRender, render } from "../lib/render"
 import { Layer } from "./Layer"
-import { Size } from "../lib/struct"
+import { Size } from "../lib/Pixels"
 
 // TODO: Remove
 
