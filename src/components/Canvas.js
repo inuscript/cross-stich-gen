@@ -5,7 +5,7 @@ import ReactDOM from "react-dom"
 // import { mapToRects } from "../lib/pixel"
 import { ContextRender, render } from "../lib/render"
 import { Layer } from "./Layer"
-import { Size, Grid, Pixel } from "../lib/Pixels"
+import { Size, Grid, Pixel } from "../lib/Entity"
 
 
 const generateRenderRectFn = (rects) => {

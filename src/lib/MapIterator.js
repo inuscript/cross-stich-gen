@@ -5,7 +5,7 @@ export const range = function*(length) {
   }
 }
 
-export const map = function*(x, y) {
+export const matrix = function*(x, y) {
   let iterY = range(y)
   for(var _y of iterY){
     let iterX = range(x)

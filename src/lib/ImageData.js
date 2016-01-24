@@ -17,7 +17,7 @@ const toPix = (data, x, y, width) => {
 
 const toMap = (data, width, height) => {
   let pix = []
-  for(let p of map(width, height)){
+  for(let p of matrix(width, height)){
     pix.push(toPix(data, p.x, p.y, width))
   }
   return pix

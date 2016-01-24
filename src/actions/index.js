@@ -1,12 +1,17 @@
 import { createAction } from 'redux-actions'
 import { contextToMap } from "../lib/imageData"
-export const paint = createAction('PAINT', (x, y, color) => {
+
+const paintAction = createAction('PAINT', (x, y, color) => {
   return {x, y, color}
 })
 
+export function paint(x, y, color){
+  return function(dispatch){
+    dispatch(paintAction(x, y, color))
+  }
+}
 
 const reloadMap = createAction('RELOAD_MAP', (data) => data)
-const reloadPalette = createAction('RELOAD_PALETTE', (data) => data)
 
 export function loadImage(imageData, width, height){
   return function(dispatch){
