@@ -1,4 +1,4 @@
-import { mapToRects } from "./pixel"
+// import { mapToRects } from "./pixel"
 
 // @deprecated
 export class ContextRender{

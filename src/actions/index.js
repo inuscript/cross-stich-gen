@@ -1,6 +1,4 @@
 import { createAction } from 'redux-actions'
-import range from "lodash.range"
-import uniq from "lodash.uniq"
 
 export const paint = createAction('PAINT', (x, y, color) => {
   return {x, y, color}
