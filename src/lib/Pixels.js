@@ -28,21 +28,17 @@ export class Pixel {
     let c = this.color
     return `rgba(${c.r}, ${c.g}, ${c.b}, ${(c.a/255)})`
   }
-  toGridRect(scale){
-    let grid = new Grid(scale)
-    let {x, y} = this.point
-    return grid.pixelToRect(x, y)
-  }
 }
 // Grid cord
 export class Grid {
   constructor(size){
     this.size = size
   }
-  pixelToRect(px, py){
+  pixelToRect(pixel){ // Pixel
+    let {x, y} = pixel.point
     return new Rect({
-      x: px * this.size, 
-      y: py * this.size, 
+      x: x * this.size, 
+      y: y * this.size, 
       w: this.size, 
       h: this.size
     })

@@ -9,10 +9,11 @@ import { Size, Grid, Pixel } from "../lib/Pixels"
 
 
 const generateRenderRectFn = (rects) => {
+  let grid = new Grid(4)
   return function(context){
     rects.forEach( (pix) => {
       let color = pix.toColorString()
-      let rect = pix.toGridRect(4)
+      let rect = grid.pixelToRect(pix)
       // console.log(color, rect)
       // console.log(rect)
       context.fillStyle = color
