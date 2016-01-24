@@ -1,5 +1,6 @@
 import {bitmap} from "../../src/reducer/index"
 import assert from "assert"
+
 describe("bitmap", () => {
   it("can set map", () => {
     let result = bitmap([

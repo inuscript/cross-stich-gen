@@ -1,3 +1,4 @@
+import range from "lodash.range"
 const toColorObj = (data, start) => {
   return {
     r: data[start + 0],
