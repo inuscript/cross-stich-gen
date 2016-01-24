@@ -1,6 +1,6 @@
 import range from "lodash.range"
-import { map } from "./mapIterator"
-import { Pixel, Color } from "./Pixels"
+import { matrix } from "./mapIterator"
+import { Pixel, Color } from "./Entity"
 
 const toColorObj = (data, start) => {
   return {

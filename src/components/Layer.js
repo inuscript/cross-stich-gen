@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from "react"
 import ReactDOM from "react-dom"
-import { Size } from "../lib/Pixels"
+import { Size } from "../lib/Entity"
 
 export class Layer extends Component{
   static propTypes(){

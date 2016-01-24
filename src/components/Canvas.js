@@ -5,22 +5,20 @@ import ReactDOM from "react-dom"
 // import { mapToRects } from "../lib/pixel"
 import { ContextRender, render } from "../lib/render"
 import { Layer } from "./Layer"
+
 import { Size, Grid, Pixel } from "../lib/Entity"
 
 
-const generateRenderRectFn = (rects) => {
-  let grid = new Grid(4)
-  return function(context){
-    rects.forEach( (pix) => {
-      let color = pix.toColorString()
-      let rect = grid.pixelToRect(pix)
-      // console.log(color, rect)
-      // console.log(rect)
-      context.fillStyle = color
-      context.fillRect(rect.x, rect.y, rect.w, rect.h)
-    })
-  }
-}
+// const generateRenderRectFn = (grid, rects) => {
+//   return function(context){
+//     rects.forEach( (pix) => {
+//       let color = pix.toColorString()
+//       let rect = grid.pixelToRect(pix)
+//       context.fillStyle = color
+//       context.fillRect(rect.x, rect.y, rect.w, rect.h)
+//     })
+//   }
+// }
 
 export class EventCanvas extends Component{
   calcCurrentPos(e){
@@ -63,6 +61,7 @@ export class PixelCanvas extends Component{
     super()
     let pixSize = 10
     this.size =  new Size({width: 200, height: 200})
+    this.grid = new Grid(pixSize)
   }
   handleEventCanvasClick(gx, gy){
     let {x, y} = this.boxer.cursorToPoint(gx, gy)
@@ -73,7 +72,7 @@ export class PixelCanvas extends Component{
 
     let { width, height } = this.size.toObject()
     context.clearRect(0, 0, width, height);
-    let fn = generateRenderRectFn(bitmap)
+    let fn = this.grid.generateRenderFunction(bitmap)
     fn(context)
   }
   render(){

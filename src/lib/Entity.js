@@ -29,6 +29,7 @@ export class Pixel {
     return `rgba(${c.r}, ${c.g}, ${c.b}, ${(c.a/255)})`
   }
 }
+
 // Grid cord
 export class Grid {
   constructor(size){
@@ -42,6 +43,16 @@ export class Grid {
       w: this.size, 
       h: this.size
     })
+  }
+  generateRenderFunction(bitmap){
+    return (context) => {
+      bitmap.forEach( (pix) => {
+        let color = pix.toColorString()
+        let rect = this.pixelToRect(pix)
+        context.fillStyle = color
+        context.fillRect(rect.x, rect.y, rect.w, rect.h)
+      })
+    }
   }
   cursorToPixel(cx, cy){
     return new PixelPoint({      
