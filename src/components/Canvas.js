@@ -3,22 +3,10 @@ import { map } from "../lib/MapIterator"
 import React, { Component, PropTypes } from "react"
 import ReactDOM from "react-dom"
 // import { mapToRects } from "../lib/pixel"
-import { ContextRender, render } from "../lib/render"
+// import { ContextRender, render } from "../lib/render"
 import { Layer } from "./Layer"
 
 import { Size, Grid, Pixel } from "../lib/Entity"
-
-
-// const generateRenderRectFn = (grid, rects) => {
-//   return function(context){
-//     rects.forEach( (pix) => {
-//       let color = pix.toColorString()
-//       let rect = grid.pixelToRect(pix)
-//       context.fillStyle = color
-//       context.fillRect(rect.x, rect.y, rect.w, rect.h)
-//     })
-//   }
-// }
 
 export class EventCanvas extends Component{
   calcCurrentPos(e){

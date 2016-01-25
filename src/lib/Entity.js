@@ -30,6 +30,10 @@ export class Pixel {
   }
 }
 
+export class Bitmap{
+  constructor(data){}
+}
+
 // Grid cord
 export class Grid {
   constructor(size){

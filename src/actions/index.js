@@ -13,8 +13,9 @@ export function paint(x, y, color){
 
 const reloadMap = createAction('RELOAD_MAP', (data) => data)
 
-export function loadImage(imageData, width, height){
+export function loadImage(imageData){
   return function(dispatch){
+    let {width, height} = imageData.canvas
     let map = contextToMap(imageData, width, height)
     // let pixel = imageToRGBA(imageData)
     dispatch(reloadMap(map))
