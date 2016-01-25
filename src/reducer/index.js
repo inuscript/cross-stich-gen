@@ -1,11 +1,21 @@
 import { createStore } from 'redux'
 import { combineReducers } from 'redux'
 
+const find = (bitmap, x, y) => {
+  
+  bitmap.forEach((item, i) => {
+    if(item.point.x === x && item.point.y === y){
+      return 
+    }
+  })
+}
+
 export const bitmap = (state = [], action) => {
+  console.log(state)
+
   switch(action.type){
     case 'PAINT':
       let {x, y, color} = action.payload
-      let cloned = state.concat()
       cloned[y][x] = color
       return cloned 
     case 'RELOAD_MAP':

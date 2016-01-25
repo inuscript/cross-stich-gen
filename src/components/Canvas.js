@@ -52,7 +52,8 @@ export class PixelCanvas extends Component{
     this.grid = new Grid(pixSize)
   }
   handleEventCanvasClick(gx, gy){
-    let {x, y} = this.boxer.cursorToPoint(gx, gy)
+    // TODO
+    let {x, y} = this.grid.cursorToPixel(gx, gy)
     this.props.paint(x, y, 1)
   }
   handlePixelDraw(context){
