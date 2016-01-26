@@ -3,11 +3,7 @@ import thunk from 'redux-thunk';
 import rootReducer from "../reducer"
 
 let initialState = {
-  bitmap : [],
-  //   [0,0,1], 
-  //   [0,1,0], 
-  //   [1,0,0]
-  // ],
+  bitmap : null,
   // palette : ['#fff', '#f00'],
   pixelSize: 10
 }

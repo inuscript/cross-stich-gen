@@ -47,7 +47,10 @@ export class Grid {
   }
   generateRenderFunction(bitmap){
     return (context) => {
-      bitmap.forEach( (pix) => {
+      if(bitmap === null){
+        return
+      }
+      bitmap.toArray().forEach( (pix) => {
         let color = pix.toColorString()
         let rect = this.pixelToRect(pix)
         context.fillStyle = color

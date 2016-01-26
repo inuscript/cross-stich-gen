@@ -10,9 +10,7 @@ const find = (bitmap, x, y) => {
   })
 }
 
-export const bitmap = (state = [], action) => {
-  console.log(state)
-
+export const bitmap = (state = null, action) => {
   switch(action.type){
     case 'PAINT':
       let {x, y, color} = action.payload
