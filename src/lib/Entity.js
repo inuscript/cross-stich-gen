@@ -2,34 +2,23 @@ import { Record } from "immutable"
 
 export class Size extends Record({width:0, height:0}){}
 
-class Point extends Record({x:0, y:0}){}
-
-class CursorPoint extends Point{}
-
-class PixelPoint extends Point{}
+class CursorPoint extends Record({x:0, y:0}){}
 
 class Rect extends Record({x:0, y:0, w: 0, h: 0}) {
+  static generate(x, y, size){
+    return new Rect({
+      x: x * size, 
+      y: y * size, 
+      w: size, 
+      h: size
+    })
+  }
   render(context, color){
     let {x, y, w, h} = this
     context.fillStyle = color
     context.fillRect(x, y, w, h)
   }
 }
-
-class Color extends Record({r:0, g:0, b:0, a:0}){
-}
-
-export class Pixel {
-  constructor(point, color){
-    this.point = new PixelPoint(point)
-    this.color = new Color(color)
-  }
-  toColorString(){
-    let c = this.color
-    return `rgba(${c.r}, ${c.g}, ${c.b}, ${(c.a/255)})`
-  }
-}
-
 
 // Grid cord
 export class Grid {
@@ -52,9 +41,9 @@ export class Grid {
       }
       bitmap.toArray().forEach( (pix) => {
         let color = pix.toColorString()
-        let rect = this.pixelToRect(pix)
-        context.fillStyle = color
-        context.fillRect(rect.x, rect.y, rect.w, rect.h)
+        let {x, y} = pix.point
+        let rect = Rect.generate(x, y, this.size) // this.pixelToRect(pix)
+        rect.render(context, color)
       })
     }
   }

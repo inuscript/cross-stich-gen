@@ -1,7 +1,7 @@
 import range from "lodash.range"
 import { matrix } from "./mapIterator"
 import { Pixel, Color } from "./Entity"
-import Matrix from "./Matrix"
+import Bitmap from "./Bitmap"
 
 class ImageData {
   constructor(width, data){
@@ -30,16 +30,11 @@ class ImageData {
   }
 }
 
-const toPix = (data, x, y) => {
-  return 
-}
-
 const toMap = (data, width, height) => {
-  let pix = new Matrix(width, height)
+  let pix = new Bitmap(width, height)
   let imageData = new ImageData(width, data)
   for(let p of matrix(width, height)){
-    let px = new Pixel(p, imageData.get(p.x, p.y))
-    pix.set(p.x, p.y, px)
+    pix.set(p.x, p.y, imageData.get(p.x, p.y))
   }
   return pix
 }
