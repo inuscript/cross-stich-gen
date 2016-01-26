@@ -4,9 +4,10 @@ import { Pixel, Color } from "./Entity"
 import Bitmap from "./Bitmap"
 
 class ImageData {
-  constructor(width, data){
+  constructor(data, width, height){
     this.data = data
     this.width = width
+    this.height = height
   }
   get range(){
     return 4;
@@ -28,18 +29,18 @@ class ImageData {
       a: chunk[3],
     }
   }
+  toBitmap(){
+    let {width, height} = this
+    let pix = new Bitmap(width, height)
+    for(let p of matrix(width, height)){
+      pix.set(p.x, p.y, imageData.get(p.x, p.y))
+    }
+    return pix
+  }
 }
 
-const toMap = (data, width, height) => {
-  let pix = new Bitmap(width, height)
-  let imageData = new ImageData(width, data)
-  for(let p of matrix(width, height)){
-    pix.set(p.x, p.y, imageData.get(p.x, p.y))
-  }
-  return pix
-}
 
 export const contextToMap = (context, width, height) => {
   let imageData = context.getImageData(0, 0, width, height)
-  return toMap(imageData.data, width, height)
+  return new ImageData(imageData.data, width, height).toBitmap()
 }
