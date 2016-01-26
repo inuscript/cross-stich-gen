@@ -1,14 +1,15 @@
 import React, {Component} from "react"
 import ReactDOM from "react-dom"
 import { Provider, connect } from "react-redux"
-import { PixelCanvas } from "../components/Canvas"
+import { PixelCanvas } from "../components/Canvases"
 import { ImageUploader } from "../components/ImageUploader"
 import { createStore, bindActionCreators } from "redux"
 import * as actions from "../actions"
 import { store } from "../store"
+import rootSelector from "../selector/"
 
 let selectMapper = (state) => {
-  return state
+  return rootSelector(state)
 }
 
 let dispatchToProps = (dispatch) => {

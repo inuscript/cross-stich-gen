@@ -47,9 +47,17 @@ class DrawCanvas extends Component{
 export class PixelCanvas extends Component{
   constructor(){
     super()
-    let pixSize = 10
-    this.size =  new Size({width: 200, height: 200})
-    this.grid = new Grid(pixSize)
+    this.pixSize = 10
+    // this.size =  new Size({width: 200, height: 200})
+    this.grid = new Grid(this.pixSize)
+  }
+  get size(){
+
+    let { width, height } = this.props.size
+    return new Size({
+      width: width * this.pixSize, 
+      height: height * this.pixSize 
+    })
   }
   handleEventCanvasClick(gx, gy){
     // TODO
@@ -58,14 +66,13 @@ export class PixelCanvas extends Component{
   }
   handlePixelDraw(context){
     let { bitmap } = this.props
-
     let { width, height } = this.size.toObject()
     context.clearRect(0, 0, width, height);
     let fn = this.grid.generateRenderFunction(bitmap)
     fn(context)
   }
   render(){
-    let {bitmap, palette, pixelSize} = this.props
+    let {bitmap, pixelSize} = this.props
     return (
       <div>
         <DrawCanvas 

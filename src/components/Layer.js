@@ -17,8 +17,9 @@ export class Layer extends Component{
     return this.size.height
   }
   get size(){
-    console.log(this.props.size)
-    return this.props.size ? this.props.size.toObject() : {width: 0, height: 0}
+    return this.props.size 
+      ? this.props.size.toObject() 
+      : { width: 0, height: 0 }
   }
   componentDidMount(){
     let context = this.getContext()
