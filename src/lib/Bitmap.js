@@ -16,7 +16,6 @@ export class Pixel {
   }
 }
 
-// TODO: width...?
 export default class Bitmap {
   constructor(width, height){
     this.data = []
