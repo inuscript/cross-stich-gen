@@ -38,7 +38,7 @@ class DrawCanvas extends Component{
   render(){
     return <Layer
       onPaint={this.props.onPaint}
-      size={this.size}
+      size={this.props.size}
     />
   }
 }

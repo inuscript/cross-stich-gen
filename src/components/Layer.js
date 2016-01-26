@@ -11,13 +11,14 @@ export class Layer extends Component{
     }
   }
   get width(){
-    return this.props.size.width
+    return this.size.width
   }
   get height(){
-    return this.props.size.height
+    return this.size.height
   }
-  get height(){
-    return this.props.size.toObject()
+  get size(){
+    console.log(this.props.size)
+    return this.props.size ? this.props.size.toObject() : {width: 0, height: 0}
   }
   componentDidMount(){
     let context = this.getContext()
@@ -45,6 +46,9 @@ export class Layer extends Component{
       zIndex: this.props.index
     }
 
-    return <canvas style={style} {...this.props} {...this.size} />
+    return <canvas style={style} 
+      {...this.size}
+      {...this.props}  
+    />
   }
 }
