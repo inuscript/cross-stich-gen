@@ -1,24 +1,25 @@
 import range from "lodash.range"
 import { matrix } from "./mapIterator"
 import { Pixel, Color } from "./Entity"
+import Bitmap from "./Bitmap"
 
-const toColorObj = (data, start) => {
+const toColorObj = (data) => {
   return {
-    r: data[start + 0],
-    g: data[start + 1],
-    b: data[start + 2],
-    a: data[start + 3],
+    r: data[0],
+    g: data[1],
+    b: data[2],
+    a: data[3],
   }
 }
-const toPix = (data, x, y, width) => {
-  let start = (x + y * width) * 4
-  return new Pixel({x, y}, toColorObj(data, start))
+const toPix = (data, x, y) => {
+  return new Pixel({x, y}, toColorObj(data.get(x,y)))
 }
 
 const toMap = (data, width, height) => {
   let pix = []
+  let bitmap = new Bitmap(width, data, 4)
   for(let p of matrix(width, height)){
-    pix.push(toPix(data, p.x, p.y, width))
+    pix.push(toPix(bitmap, p.x, p.y))
   }
   return pix
 }

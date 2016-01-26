@@ -30,6 +30,7 @@ export class Pixel {
   }
 }
 
+
 // Grid cord
 export class Grid {
   constructor(size){
