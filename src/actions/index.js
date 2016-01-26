@@ -1,5 +1,5 @@
 import { createAction } from 'redux-actions'
-import { contextToMap } from "../lib/imageData"
+import ImageData from "../lib/ImageData"
 
 const paintAction = createAction('PAINT', (x, y, color) => {
   return {x, y, color}
@@ -16,9 +16,9 @@ const reloadMap = createAction('RELOAD_MAP', (data) => data)
 export function loadImage(imageData){
   return function(dispatch){
     let {width, height} = imageData.canvas
-    let map = contextToMap(imageData, width, height)
+    let data = ImageData.generateFromContext(imageData, width, height)
     // let pixel = imageToRGBA(imageData)
-    dispatch(reloadMap(map))
+    dispatch(reloadMap(data.toBitmap()))
     // dispatch(reloadMap(pixel.map))
   }
 }
