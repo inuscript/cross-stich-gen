@@ -2,7 +2,7 @@
 import { Record } from "immutable"
 import Point from "./Point"
 
-class Color extends Record({r:0, g:0, b:0, a:0}){}
+class Color extends Record({r:0, g:0, b:0, a:255}){}
 
 export class Pixel {
   constructor(point, color){
