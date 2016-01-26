@@ -6,7 +6,7 @@ export class Layer extends Component{
   static propTypes(){
     return {
       index: PropTypes.number.isRequired,
-      size: PropTypes.instanceOf(Size),
+      size: PropTypes.instanceOf(Size).isRequired,
       onPaint: PropTypes.func
     }
   }
@@ -17,9 +17,7 @@ export class Layer extends Component{
     return this.size.height
   }
   get size(){
-    return this.props.size 
-      ? this.props.size.toObject() 
-      : { width: 0, height: 0 }
+    return this.props.size.toObject()
   }
   componentDidMount(){
     let context = this.getContext()

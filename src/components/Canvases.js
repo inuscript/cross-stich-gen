@@ -24,7 +24,8 @@ export class EventCanvas extends Component{
     let {x, y} = this.calcCurrentPos(e)
   }
   render(){
-    return <Layer 
+    return <Layer
+      size={this.props.size}
       onClick={this.handleClick.bind(this)}
       onMouseMove={this.handleMouseMove.bind(this)}
     />
@@ -46,7 +47,7 @@ export class PixelCanvas extends Component{
   }
   handleEventCanvasClick(gx, gy){
     let {x, y} = this.grid.cursorToPixel(gx, gy)
-    this.props.paint(x, y, "rgb(0,0,0)")
+    this.props.paint(x, y, {r: 0, g:0, b:0})
   }
   handlePixelDraw(context){
     let { bitmap } = this.props

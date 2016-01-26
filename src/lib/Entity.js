@@ -1,8 +1,8 @@
 import { Record } from "immutable"
+import Point from "./Point"
 
 export class Size extends Record({width:0, height:0}){}
 
-class CursorPoint extends Record({x:0, y:0}){}
 
 class Rect extends Record({x:0, y:0, w: 0, h: 0}) {
   static generate(x, y, size){
@@ -48,7 +48,7 @@ export class Grid {
     }
   }
   cursorToPixel(cx, cy){
-    return new PixelPoint({      
+    return new Point({      
       x: Math.floor(cx / this.size),
       y: Math.floor(cy / this.size)
     })

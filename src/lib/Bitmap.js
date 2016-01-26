@@ -1,13 +1,12 @@
 // import { Pixel, Color } from "./Entity"
 import { Record } from "immutable"
-
-class PixelPoint extends Record({x:0, y:0}){}
+import Point from "./Point"
 
 class Color extends Record({r:0, g:0, b:0, a:0}){}
 
 export class Pixel {
   constructor(point, color){
-    this.point = new PixelPoint(point)
+    this.point = new Point(point)
     this.color = new Color(color)
   }
   toColorString(){
@@ -35,5 +34,10 @@ export default class Bitmap {
   }
   toArray(){
     return this.data
+  }
+  clone(){ // TODO
+    let cloned = new Bitmap(this.width, this.height)
+    cloned.data = this.data
+    return cloned
   }
 }
