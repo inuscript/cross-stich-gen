@@ -1,6 +1,5 @@
 import range from "lodash.range"
 import { matrix } from "./mapIterator"
-import { Pixel, Color } from "./Entity"
 import Bitmap from "./Bitmap"
 
 export default class ImageData {
@@ -33,7 +32,7 @@ export default class ImageData {
     let {width, height} = this
     let pix = new Bitmap(width, height)
     for(let p of matrix(width, height)){
-      pix.set(p.x, p.y, this.get(p.x, p.y))
+      pix.setItem(p.x, p.y, this.get(p.x, p.y))
     }
     return pix
   }

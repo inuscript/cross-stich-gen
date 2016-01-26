@@ -6,7 +6,7 @@ import ReactDOM from "react-dom"
 // import { ContextRender, render } from "../lib/render"
 import { Layer } from "./Layer"
 
-import { Size, Grid, Pixel } from "../lib/Entity"
+import { Size, Grid } from "../lib/Grid"
 
 export class EventCanvas extends Component{
   calcCurrentPos(e){

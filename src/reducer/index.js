@@ -13,8 +13,8 @@ export const bitmap = (state = null, action) => {
   switch(action.type){
     case 'PAINT':
       let {x, y, color} = action.payload
-      state.set(x, y, color)
-      return state.clone() 
+      return state.setItem(x, y, color)
+      // return state.clone() 
     case 'RELOAD_MAP':
       return action.payload
     default:

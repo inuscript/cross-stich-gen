@@ -1,5 +1,5 @@
 // import { Pixel, Color } from "./Entity"
-import { Record } from "immutable"
+import { Record, List } from "immutable"
 import Point from "./Point"
 
 class Color extends Record({r:0, g:0, b:0, a:255}){}
@@ -15,22 +15,31 @@ export class Pixel {
   }
 }
 
-export default class Bitmap {
+export default class Bitmap { // extends List{
   constructor(width, height){
+    // super()
     this.data = []
     this.width = width
     this.height = height
   }
+  get(idx){
+    return this.data[idx]
+  }
+  set(k, v){
+    this.data[k] = v
+    return this.clone()
+  }
   getIndex(x, y){
     return (x + y * this.width)
   }
-  get(x, y){
+  getItem(x, y){
     let index = this.getIndex(x, y)
-    return this.data[index]
+    return this.get(index)
   }
-  set(x, y, colorObj){
+  setItem(x, y, colorObj){
     let index = this.getIndex(x, y)
-    this.data[index] = new Pixel({x, y}, colorObj)
+    let pix = new Pixel({x, y}, colorObj)
+    return this.set(index, pix)
   }
   toArray(){
     return this.data
