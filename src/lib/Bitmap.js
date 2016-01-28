@@ -27,7 +27,7 @@ export default class Bitmap { // extends List{
   }
   set(k, v){
     this.data[k] = v
-    return this.clone()
+    // return this.clone()
   }
   getIndex(x, y){
     return (x + y * this.width)
@@ -45,8 +45,9 @@ export default class Bitmap { // extends List{
     return this.data
   }
   clone(){ // TODO
-    let cloned = new Bitmap(this.width, this.height)
-    cloned.data = this.data
-    return cloned
+    return Object.assign(Object.create(this), this);
+    // let cloned = new Bitmap(this.width, this.height)
+    // cloned.data = this.data
+    // return cloned
   }
 }
