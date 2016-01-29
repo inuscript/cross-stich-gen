@@ -1,4 +1,3 @@
-// import { Pixel, Color } from "./Entity"
 import { Record, List } from "immutable"
 import Point from "./Point"
 import parse, { PixelBank } from "pixelbank"

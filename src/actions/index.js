@@ -1,5 +1,4 @@
 import { createAction } from 'redux-actions'
-// import ImageData from "../lib/ImageData"
 import Bitmap from "../lib/Bitmap"
 
 const paintAction = createAction('PAINT', (x, y, color) => {
