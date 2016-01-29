@@ -1,6 +1,7 @@
 // import { Pixel, Color } from "./Entity"
 import { Record, List } from "immutable"
 import Point from "./Point"
+import parse, { PixelBank } from "pixelbank"
 
 class Color extends Record({r:0, g:0, b:0, a:255}){}
 
@@ -22,10 +23,21 @@ export default class Bitmap { // extends List{
     this.width = width
     this.height = height
   }
+  static generate(imageData){
+    let { width, height } = imageData
+    let pixels = parse(imageData)
+    let start = new Date()
+    let bm = new Bitmap(width, height)
+    pixels.forEach((pix) => {
+      bm.setItem(pix.left, pix.top, pix.color)
+    })
+    let end = new Date()
+    return bm
+  }
   get(idx){
     return this.data[idx]
   }
-  set(k, v){
+  _set(k, v){
     this.data[k] = v
     // return this.clone()
   }
@@ -38,8 +50,8 @@ export default class Bitmap { // extends List{
   }
   setItem(x, y, colorObj){
     let index = this.getIndex(x, y)
-    let pix = new Pixel({x, y}, colorObj)
-    return this.set(index, pix)
+    let pix = new Pixel({x, y}, colorObj) // TODO slow
+    return this._set(index, pix)
   }
   toArray(){
     return this.data

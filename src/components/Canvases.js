@@ -1,4 +1,4 @@
-import { map } from "../lib/MapIterator"
+// import { map } from "../lib/MapIterator"
 
 import React, { Component, PropTypes } from "react"
 import ReactDOM from "react-dom"
