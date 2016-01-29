@@ -12,8 +12,7 @@ class DummyImageLoader extends Component{
       0, 0, img.width, img.height, 
       0, 0, canvas.width, canvas.height
     )
-    // this.props.onLoadImage(context, canvas.width, canvas.height)
-    let imageData = context.getImageData(0, 0, img.width, img.height)
+    let imageData = context.getImageData(0, 0, canvas.width, canvas.height)
     this.props.onLoadImage(imageData)
   }
   render(){
