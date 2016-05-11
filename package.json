@@ -29,7 +29,7 @@
     "babel-preset-stage-2": "^6.5.0",
     "babel-preset-stage-3": "^6.5.0",
     "babel-register": "^6.5.2",
-    "electron-prebuilt": "^0.37.5",
+    "electron-prebuilt": "^0.37.6",
     "lodash.uniq": "^4.2.1",
     "mocha": "^2.4.4",
     "rollup": "^0.25.8",
