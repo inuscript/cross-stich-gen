@@ -17,7 +17,7 @@
     "react-redux": "^4.4.3",
     "redux": "^3.4.0",
     "redux-actions": "^0.9.1",
-    "redux-thunk": "^2.0.1",
+    "redux-thunk": "^2.1.0",
     "reselect": "^2.5.1"
   },
   "devDependencies": {
