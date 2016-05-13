@@ -30,7 +30,7 @@
     "babel-preset-stage-3": "^6.5.0",
     "babel-register": "^6.5.2",
     "electron-prebuilt": "^1.0.2",
-    "lodash.uniq": "^4.2.1",
+    "lodash.uniq": "^4.3.0",
     "mocha": "^2.4.4",
     "rollup": "^0.25.8",
     "rollup-plugin-babel": "^2.4.0"
