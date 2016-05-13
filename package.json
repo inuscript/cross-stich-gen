@@ -32,7 +32,7 @@
     "electron-prebuilt": "^1.0.2",
     "lodash.uniq": "^4.2.1",
     "mocha": "^2.4.4",
-    "rollup": "^0.25.8",
+    "rollup": "^0.26.3",
     "rollup-plugin-babel": "^2.4.0"
   },
   "babel": {
